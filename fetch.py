@@ -31,11 +31,12 @@ for row in ret["results"]["bindings"]:
         set(row["ingredients"]["value"].split("|")),
     )
     ingredients = [i.replace(" as food", "") for i in ingredients]
-    foods[title] = dict(
-        title=title,
-        origins=sorted(origins),
-        ingredients=sorted(ingredients),
-    )
+    if title and len(origins) > 0 and len(ingredients) > 0:
+        foods[title] = dict(
+            title=title,
+            origins=sorted(origins),
+            ingredients=sorted(ingredients),
+        )
 
 with open("foods.json", "w") as f:
     json.dump(foods, f)

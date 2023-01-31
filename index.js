@@ -17,10 +17,9 @@ const today =
 const corpus = await require("./foods.json");
 const labels = Object.keys(corpus);
 
-const answer = labels[(parseInt(md5(today), 16) % labels.length) - 1];
+const answer = labels[parseInt(md5(today), 16) % labels.length];
 const possibleHints = corpus[answer].ingredients;
-const hint =
-  possibleHints[(parseInt(md5(today), 16) % possibleHints.length) - 1];
+const hint = possibleHints[parseInt(md5(today), 16) % possibleHints.length];
 
 document.getElementsByTagName("main")[0].innerHTML = `
   <p>Hint: ${hint}</p>
