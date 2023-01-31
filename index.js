@@ -2,12 +2,6 @@ import { default as autoComplete } from "@tarekraafat/autocomplete.js";
 require("@tarekraafat/autocomplete.js/dist/css/autoComplete.02.css");
 const md5 = require("js-md5");
 
-document.getElementsByTagName("main")[0].innerHTML = `
-  <div id="result"></div>
-  <input id="autoComplete" />
-  <ul id="guesses"></ul>
-`;
-
 const now = new Date();
 const today =
   now.getUTCFullYear() +
@@ -24,6 +18,16 @@ const corpus = await require("./foods.json");
 const labels = Object.keys(corpus);
 
 const answer = labels[(parseInt(md5(today), 16) % labels.length) - 1];
+const possibleHints = corpus[answer].ingredients;
+const hint =
+  possibleHints[(parseInt(md5(today), 16) % possibleHints.length) - 1];
+
+document.getElementsByTagName("main")[0].innerHTML = `
+  <p>Hint: ${hint}</p>
+  <div id="result"></div>
+  <input id="autoComplete" />
+  <ul id="guesses"></ul>
+`;
 
 function highlight(guessInfo, answerInfo) {
   if (Array.isArray(answerInfo)) {
