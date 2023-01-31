@@ -31,7 +31,7 @@ for row in ret["results"]["bindings"]:
         set(row["ingredients"]["value"].split("|")),
     )
     ingredients = [i.replace(" as food", "") for i in ingredients]
-    if title and len(origins) > 0 and len(ingredients) > 0:
+    if title and len(origins) > 0 and len(ingredients) > 2:
         foods[title] = dict(
             title=title,
             origins=sorted(origins),
