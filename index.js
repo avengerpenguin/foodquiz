@@ -24,7 +24,6 @@ const corpus = await require("./foods.json");
 const labels = Object.keys(corpus);
 
 const answer = labels[(parseInt(md5(today), 16) % labels.length) - 1];
-console.log(answer);
 
 function highlight(guessInfo, answerInfo) {
   if (Array.isArray(answerInfo)) {
